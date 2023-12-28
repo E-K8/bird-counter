@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className='App'>
-      <h1 className='header-title'>🦆🦢 Bird counter 🕊️🐧</h1>
+      <h1 className='header-title'>🦆🦅 Bird counter 🕊️🦉</h1>
       <h2 className='total-counter'>Total Birds: {totalBirds}</h2>
       <button onClick={() => setTotalBirds(0)}>RESET</button>
       <div className='gallery'>
