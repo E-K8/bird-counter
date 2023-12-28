@@ -7,41 +7,51 @@ import swanPic from './Public/bird_swan.png';
 import { BirdSection } from './Components/BirdSection';
 
 function App() {
-  const [totalBirds, setTotalBirds] = useState(0);
+  const initialCounts = { Magpie: 0, Coot: 0, Swan: 0 };
+  const [birdCounts, setBirdCounts] = useState(initialCounts);
 
-  function addToTotal() {
-    setTotalBirds(totalBirds + 1);
+  function addToTotal(bird) {
+    setBirdCounts({ ...birdCounts, [bird]: birdCounts[bird] + 1 });
   }
 
-  function deductTotal() {
-    return totalBirds === 0 ? null : setTotalBirds(totalBirds - 1);
+  function deductFromTotal(bird) {
+    if (birdCounts[bird] > 0) {
+      setBirdCounts({ ...birdCounts, [bird]: birdCounts[bird] - 1 });
+    }
   }
 
-  //TODO add function to reset all counters
+  function resetCounts() {
+    setBirdCounts(initialCounts);
+  }
 
   return (
     <div className='App'>
       <h1 className='header-title'>🦆🦅 Bird counter 🕊️🦉</h1>
-      <h2 className='total-counter'>Total Birds: {totalBirds}</h2>
-      <button onClick={() => setTotalBirds(0)}>RESET</button>
+      <h2 className='total-counter'>
+        Total Birds: {Object.values(birdCounts).reduce((a, b) => a + b, 0)}
+      </h2>
+      <button onClick={resetCounts}>RESET ALL</button>
       <div className='gallery'>
         <BirdSection
           image={magpiePic}
           bird='Magpie'
-          addTotalBirds={addToTotal}
-          deductTotalBirds={deductTotal}
+          count={birdCounts.Magpie}
+          addTotalBirds={() => addToTotal('Magpie')}
+          deductTotalBirds={() => deductFromTotal('Magpie')}
         />
         <BirdSection
           image={cootPic}
           bird='Coot'
-          addTotalBirds={addToTotal}
-          deductTotalBirds={deductTotal}
+          count={birdCounts.Coot}
+          addTotalBirds={() => addToTotal('Coot')}
+          deductTotalBirds={() => deductFromTotal('Coot')}
         />
         <BirdSection
           image={swanPic}
           bird='Swan'
-          addTotalBirds={addToTotal}
-          deductTotalBirds={deductTotal}
+          count={birdCounts.Swan}
+          addTotalBirds={() => addToTotal('Swan')}
+          deductTotalBirds={() => deductFromTotal('Swan')}
         />
       </div>
     </div>
