@@ -8,6 +8,7 @@ export function BirdSection({
   count,
   addTotalBirds,
   deductTotalBirds,
+  resetBirdCount,
 }) {
   const altText = `Nice photo of a ${bird}`;
 
@@ -25,6 +26,7 @@ export function BirdSection({
           if (count > 0) deductTotalBirds();
         }}
       />
+      <BirdButton className='btn' text='RESET' onClick={resetBirdCount} />
     </article>
   );
 }

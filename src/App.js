@@ -24,6 +24,10 @@ function App() {
     setBirdCounts(initialCounts);
   }
 
+  function resetIndividualBirdCount(bird) {
+    setBirdCounts({ ...birdCounts, [bird]: 0 });
+  }
+
   return (
     <div className='App'>
       <h1 className='header-title'>🦆🦅 Bird counter 🕊️🦉</h1>
@@ -38,6 +42,7 @@ function App() {
           count={birdCounts.Magpie}
           addTotalBirds={() => addToTotal('Magpie')}
           deductTotalBirds={() => deductFromTotal('Magpie')}
+          resetBirdCount={() => resetIndividualBirdCount('Magpie')}
         />
         <BirdSection
           image={cootPic}
@@ -45,6 +50,7 @@ function App() {
           count={birdCounts.Coot}
           addTotalBirds={() => addToTotal('Coot')}
           deductTotalBirds={() => deductFromTotal('Coot')}
+          resetBirdCount={() => resetIndividualBirdCount('Coot')}
         />
         <BirdSection
           image={swanPic}
@@ -52,6 +58,7 @@ function App() {
           count={birdCounts.Swan}
           addTotalBirds={() => addToTotal('Swan')}
           deductTotalBirds={() => deductFromTotal('Swan')}
+          resetBirdCount={() => resetIndividualBirdCount('Swan')}
         />
       </div>
     </div>
